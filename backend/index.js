@@ -9,7 +9,13 @@ const PORT = 5000;
 app.use(express.json());
 
 
+async function main() {
+  await sequelize.sync({ force: true }); 
+  console.log("✅ Database synced with User and Note tables");
 
+}
+
+main();
 
 // Default route
 app.get("/", (req, res) => {
