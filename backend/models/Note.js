@@ -20,7 +20,7 @@ const Note = sequelize.define("Note", {
 });
 
 
-Note.belongsTo(User, { foreignKey: "userId" });
+
 
 
 module.exports = Note;

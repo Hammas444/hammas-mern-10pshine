@@ -1,12 +1,18 @@
-const express = require("express");
-const sequelize = require("./db");
-
+import express from "express";
+import sequelize from "./db.js";
+import User from "./models/User.js";
+import Note from "./models/Note.js";
+import noteRoutes from "./routes/noteRoutes.js";
 
 const app = express();
 const PORT = 5000;
 
 // Middleware to parse JSON
 app.use(express.json());
+app.use("/notes", noteRoutes);
+
+
+
 
 
 async function main() {
