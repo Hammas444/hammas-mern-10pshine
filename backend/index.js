@@ -1,15 +1,36 @@
-const express = require("express");
-const sequelize = require("./db");
-
+import express from "express";
+import sequelize from "./db.js";
+import * as dotenv from 'dotenv' 
+import User from "./models/User.js";
+import Note from "./models/Note.js";
+import noteRoutes from "./routes/noteRoutes.js";
+import authRoutes from "./routes/authRoutes.js";
 
 const app = express();
 const PORT = 5000;
-
+dotenv.config()
+const port = process.env.PORT || 5000
 // Middleware to parse JSON
 app.use(express.json());
+app.use("/notes", noteRoutes);
+app.use("/auth", authRoutes);
 
 
+// One user can have many notes
+User.hasMany(Note, { foreignKey: "userId",onDelete: 'CASCADE' });
+Note.belongsTo(User, { foreignKey: "userId" });
 
+async function main() {
+  try {
+    await sequelize.sync({alter: true });
+  } catch (error) {
+    console.error("❌ Unable to sync database:", error);
+  }
+  console.log("✅ Database synced with User and Note tables");
+
+}
+
+main();
 
 // Default route
 app.get("/", (req, res) => {
@@ -18,6 +39,6 @@ app.get("/", (req, res) => {
 
 
 // Start server
-app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
+app.listen(port, () => {
+  console.log(`Server is running on http://localhost:${port}`);
 });
