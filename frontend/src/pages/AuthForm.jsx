@@ -8,28 +8,67 @@ export default function AuthForm() {
     email: "",
     password: "",
   });
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (isLogin) {
-      console.log("Login with:", formData);
-      // TODO: fetch("/auth/login", { method: "POST", body: JSON.stringify(formData) })
-    } else {
-      console.log("Signup with:", formData);
-      // TODO: fetch("/auth/register", { method: "POST", body: JSON.stringify(formData) })
+    setError("");
+    setSuccess("");
+    setLoading(true);
+
+    try {
+      const endpoint = isLogin
+        ? "http://localhost:5000/auth/login"
+        : "http://localhost:5000/auth/register";
+
+      const body = isLogin
+        ? { email: formData.email, password: formData.password }
+        : { username: formData.name, email: formData.email, password: formData.password };
+
+      const res = await fetch(endpoint, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(body),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        throw new Error(data.message || "Something went wrong");
+      }
+
+      if (isLogin) {
+        // ✅ Save JWT token in localStorage
+        localStorage.setItem("token", data.token);
+        setSuccess("Login successful! ✅");
+      } else {
+        setSuccess("Signup successful! 🎉 Now you can log in.");
+        setIsLogin(true);
+      }
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
-    <div className="flex justify-center items-center ">
+    <div className="flex justify-center items-center">
       <div className="relative bg-white/20 backdrop-blur-lg shadow-2xl rounded-3xl p-10 w-full max-w-md transition-all duration-500">
         <h2 className="text-3xl font-bold text-center text-black mb-6 drop-shadow">
           {isLogin ? "Welcome Back 👋" : "Join Us 🚀"}
         </h2>
+
+        {/* Show error/success */}
+        {error && <p className="text-red-500 text-sm mb-3">{error}</p>}
+        {success && <p className="text-green-600 text-sm mb-3">{success}</p>}
+
         <form onSubmit={handleSubmit} className="space-y-4">
           {!isLogin && (
             <div className="relative">
@@ -45,6 +84,7 @@ export default function AuthForm() {
               />
             </div>
           )}
+
           <div className="relative">
             <Mail className="absolute left-3 top-3 text-gray-400" size={20} />
             <input
@@ -57,6 +97,7 @@ export default function AuthForm() {
               required
             />
           </div>
+
           <div className="relative">
             <Lock className="absolute left-3 top-3 text-gray-400" size={20} />
             <input
@@ -69,33 +110,36 @@ export default function AuthForm() {
               required
             />
           </div>
+
           <button
             type="submit"
-            className="w-full py-2 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-white font-semibold rounded-lg shadow-lg hover:opacity-90 transition"
+            disabled={loading}
+            className="w-full py-2 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-white font-semibold rounded-lg shadow-lg hover:opacity-90 transition disabled:opacity-50"
           >
-            {isLogin ? "Login" : "Sign Up"}
+            {loading ? "Processing..." : isLogin ? "Login" : "Sign Up"}
           </button>
         </form>
+
         <p className="text-center text-sm text-black mt-6">
           {isLogin ? (
             <>
               Don’t have an account?{" "}
-              <div
+              <span
                 onClick={() => setIsLogin(false)}
-                className="text-black-300 hover:underline cursor-pointer"
+                className="text-blue-600 hover:underline cursor-pointer"
               >
                 Sign Up
-              </div>
+              </span>
             </>
           ) : (
             <>
               Already a member?{" "}
-              <div
+              <span
                 onClick={() => setIsLogin(true)}
-                className="text-black-300 hover:underline cursor-pointer"
+                className="text-blue-600 hover:underline cursor-pointer"
               >
                 Login
-              </div>
+              </span>
             </>
           )}
         </p>

@@ -5,15 +5,28 @@ import User from "./models/User.js";
 import Note from "./models/Note.js";
 import noteRoutes from "./routes/noteRoutes.js";
 import authRoutes from "./routes/authRoutes.js";
+import cors from "cors";
 
 const app = express();
-const PORT = 5000;
 dotenv.config()
 const port = process.env.PORT || 5000
+
+
+// ✅ CORS setup
+app.use(cors({
+  origin: "http://localhost:5173",  // your React frontend
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+  credentials: true
+}));
+
+
 // Middleware to parse JSON
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use("/notes", noteRoutes);
 app.use("/auth", authRoutes);
+
 
 
 // One user can have many notes
