@@ -68,12 +68,20 @@ async function login(req, res) {
     const token = jwt.sign({ id: user.id }, JWT_SECRET, { expiresIn: "1h" });
 
     logger.info({ userId: user.id, email }, "Login successful");
-    res.json({ message: "Login successful", token });
+    res.json({
+      message: "Login successful",
+      token,
+      user: { id: user.id, username: user.username, email: user.email },
+    });
 
   } catch (err) {
     logger.error({ err: err.message, email: req.body.email }, "Server error during login");
     res.status(500).json({ error: "Server error" });
   }
 }
+
+
+  
+
 
 module.exports = { register, login };
