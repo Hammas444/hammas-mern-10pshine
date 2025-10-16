@@ -65,7 +65,7 @@ async function login(req, res) {
     }
 
     // 3. Generate JWT token
-    const token = jwt.sign({ id: user.id }, JWT_SECRET, { expiresIn: "1h" });
+    const token = jwt.sign({ id: user.id }, JWT_SECRET, { expiresIn: "30d" });
 
     logger.info({ userId: user.id, email }, "Login successful");
     res.json({
@@ -81,7 +81,56 @@ async function login(req, res) {
 }
 
 
-  
+async function getUsers(req, res) {
+
+try {
+  const  id  = req.user.id;
+  const users = await User.findByPk(id);
+  if (!users) {
+    return res.status(404).json({ error: "User not found" });
+  }
+  res.json(users);
+
+}  
+catch (error) {
+
+res.status(500).json({ error: "Failed to fetch users", details: error.message });
+
+}
 
 
-module.exports = { register, login };
+
+}
+
+
+async function updateUser(req, res) {
+
+try {
+
+  const  userId  = req.user.id;
+  const { username, email, password } = req.body;
+  const user = await User.findByPk(userId);
+  if (!user) {
+    return res.status(404).json({ error: "User not found" });
+  }
+  user.username = username || user.username;
+  user.email = email || user.email;
+  if (password) {
+    user.password = await bcrypt.hash(password, 10);
+  }
+  await user.save();
+  res.json(user);
+
+} 
+catch (error) {
+
+res.status(500).json({ error: "Failed to update user", details: error.message });
+
+}
+
+
+
+}
+
+
+module.exports = { register, login, getUsers, updateUser };
