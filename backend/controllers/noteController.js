@@ -12,7 +12,7 @@ async function createNote(req, res) {
   try {
     const { title, content } = req.body;
 
-    logger.info({ user: req.user?.id, title }, "Creating a new note");
+    logger.info({ user: req.user?.id }, "Creating a new note");
 
     const note = await Note.create({ 
       title, 
@@ -20,7 +20,7 @@ async function createNote(req, res) {
       userId: req.user.id 
     });
 
-    logger.info({ noteId: note.id, user: req.user.id }, "Note created successfully");
+    logger.info({ noteId: note.id, user: req.user.id , title , content}, "Note created successfully");
     res.status(201).json(note);
   } catch (error) {
     logger.error({ err: error.message, user: req.user?.id }, "Failed to create note");
@@ -53,7 +53,7 @@ async function updateNote(req, res) {
     const { id } = req.params;
     const { title, content } = req.body;
 
-    logger.info({ noteId: id, user: req.user?.id }, "Attempting to update note");
+    logger.info({ noteId: id, user: req.user?.id  }, "Attempting to update note");
 
     const note = await Note.findByPk(id);
     if (!note) {
@@ -65,7 +65,7 @@ async function updateNote(req, res) {
     note.content = content || note.content;
     await note.save();
 
-    logger.info({ noteId: id, user: req.user?.id }, "Note updated successfully");
+    logger.info({ noteId: id, user: req.user?.id , title , content }, "Note updated successfully");
     res.json(note);
   } catch (error) {
     logger.error({ err: error.message, noteId: req.params.id }, "Failed to update note");
