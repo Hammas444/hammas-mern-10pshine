@@ -179,12 +179,14 @@ const user = JSON.parse(localStorage.getItem('user'));
 
       {/* Notes List */}
       <br /><br />
-      <h2 className="text-xl font-semibold text-gray-800 mb-4">Your Notes</h2>
 
       {notes.length === 0 ? (
-        <p className="text-gray-500 text-center italic">
+        <div className="flex flex-col items-center justify-center h-screen text-center">
+        <h2 className="text-xl font-semibold text-gray-800 mb-4">Your Notes</h2>
+        <p className="text-gray-500 text-center justify-center items-center italic">
           No notes found. Start by adding one above!
         </p>
+        </div>
       ) : (
         <div className="grid md:grid-cols-2 gap-4">
           {notes.map((note) => (
@@ -194,14 +196,7 @@ const user = JSON.parse(localStorage.getItem('user'));
             >
               {editingNote && editingNote.id === note.id ? (
                 <>
-                  {/* <input
-                    type="text"
-                    value={editingNote.title}
-                    onChange={(e) =>
-                      setEditingNote({ ...editingNote, title: e.target.value })
-                    }
-                    className="w-full p-2 mb-2 border rounded focus:ring-2 focus:ring-blue-400"
-                  /> */}
+                 
 
                    <ReactQuill
           theme="snow"

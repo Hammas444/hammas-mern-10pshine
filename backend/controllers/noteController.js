@@ -1,5 +1,7 @@
-const Note = require("../models/Note");
-const logger = require("pino")({
+
+import Note from "../models/Note.js";
+import pino from "pino";
+const logger = pino({
   transport: {
     target: "pino-pretty",
     options: {
@@ -7,6 +9,9 @@ const logger = require("pino")({
     },
   },
 });
+
+
+
 
 async function createNote(req, res) {
   try {
@@ -94,7 +99,8 @@ async function deleteNote(req, res) {
   }
 }
 
-module.exports = {
+
+export default {
   createNote,
   getNotes,
   updateNote,

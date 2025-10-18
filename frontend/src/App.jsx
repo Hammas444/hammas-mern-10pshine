@@ -13,6 +13,9 @@ import EditNote from "./pages/EditNote";
 function App() {
 
 
+const user = JSON.parse(localStorage.getItem("user"));
+
+
   return (
     <>
 
@@ -20,13 +23,26 @@ function App() {
 
 <BrowserRouter>
 
-<Navbar />
+ {user && <Navbar />}
 
 <Routes>
-  <Route path="/" element={<AuthForm />} />
+
+{!user && <Route path="/" element={<AuthForm />} />}
+
+{user? (
+<>
+
   <Route path="/dashboard" element={<UserDashboard />} />
   <Route path="/edit" element={< EditNote/>} />
   <Route path="/profile" element={<Profile />} />
+
+
+</>
+
+) : (
+  <Route path="*" element={<AuthForm />} />
+)}
+
 </Routes>
 
 </BrowserRouter>
