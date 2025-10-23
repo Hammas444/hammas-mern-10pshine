@@ -106,7 +106,8 @@ const user = JSON.parse(localStorage.getItem('user'));
   
 
 
-  <button
+  <button 
+      data-testid="open-add-modal"
       className="fixed bottom-6  right-6 bg-blue-500 text-white p-4 rounded-2 shadow-lg hover:bg-blue-600 transition duration-300 flex items-center justify-center"
       title="Add a New Note"
        onClick={handleShow}
@@ -157,7 +158,8 @@ const user = JSON.parse(localStorage.getItem('user'));
         />
 
        
-        <button
+        <button 
+          data-testid="submit-add-note"
           type="submit"
           className="bg-blue-500 border-0 h-9  hover:bg-gray-500 hover:text-gray-950 text-white px-5 py-2 rounded-2 font-medium shadow transition"
           onClick={handleClose}
