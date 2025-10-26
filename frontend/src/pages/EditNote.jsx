@@ -96,6 +96,7 @@ import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import ReactQuill from "react-quill-new";
 import "react-quill-new/dist/quill.snow.css";
+import toast from "react-hot-toast";
 
 const EditNote = () => {
   const location = useLocation();
@@ -126,9 +127,9 @@ const EditNote = () => {
         body: JSON.stringify(editedNote),
       });
 
-      if (!res.ok) throw new Error("Failed to update note");
+      if (!res.ok) toast.error("Failed to update note");
 
-      alert("Note updated successfully!");
+      toast("Note updated successfully!",{style:{background:"#2C5364",color:"#fff"}});
       navigate("/dashboard");
     } catch (err) {
       console.error("Update failed:", err);
