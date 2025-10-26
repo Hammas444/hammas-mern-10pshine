@@ -127,7 +127,9 @@ const EditNote = () => {
         body: JSON.stringify(editedNote),
       });
 
-      if (!res.ok) toast.error("Failed to update note");
+      if (!res.ok){ toast.error("Failed to update note");
+      return;
+      }
 
       toast("Note updated successfully!",{style:{background:"#2C5364",color:"#fff"}});
       navigate("/dashboard");
@@ -150,6 +152,7 @@ const EditNote = () => {
               Title:
             </label>
             <ReactQuill
+             aria-label="Title Editor"
               theme="snow"
               value={editedNote.title}
               onChange={(value) => setEditedNote({ ...editedNote, title: value })}
@@ -163,6 +166,7 @@ const EditNote = () => {
               Content:
             </label>
             <ReactQuill
+              aria-label="Content Editor"
               theme="snow"
               value={editedNote.content}
               onChange={(value) =>
