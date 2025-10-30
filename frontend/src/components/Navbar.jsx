@@ -21,6 +21,7 @@ const user = JSON.parse(localStorage.getItem('user'));
                     px-6 py-3 rounded-2xl 
                     bg-white/10 backdrop-blur-lg shadow-lg border border-white/20">
       
+
       {/* Home */}
       <Link to={'/dashboard'} className="text-black text-2xl hover:scale-110 transition">
         <FaHome />
