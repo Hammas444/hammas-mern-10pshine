@@ -281,7 +281,7 @@ const Profile = () => {
         })
       );
 
-      toast("Profile updated successfully!",{style:{background:"#22c55e",color:"#fff"}});
+      alert("Profile updated successfully!");
       setEditing(false);
       navigate("/dashboard");
     } catch (error) {
@@ -336,10 +336,11 @@ const Profile = () => {
           </h2>
 
           <div className="mb-4">
-            <label className="block text-gray-700 font-semibold mb-2">
+            <label htmlFor="username" className="block text-gray-700 font-semibold mb-2">
               Username
             </label>
-            <input
+            <input 
+            id="username"
               type="text"
               name="username"
               className="w-full p-2 border rounded focus:outline-blue-400"
@@ -349,10 +350,11 @@ const Profile = () => {
           </div>
 
           <div className="mb-4">
-            <label className="block text-gray-700 font-semibold mb-2">
+            <label htmlFor="email" className="block text-gray-700 font-semibold mb-2">
               Email
             </label>
             <input
+              id="email"
               type="email"
               name="email"
               className="w-full p-2 border rounded focus:outline-blue-400"
@@ -362,10 +364,11 @@ const Profile = () => {
           </div>
 
           <div className="mb-4">
-            <label className="block text-gray-700 font-semibold mb-2">
+            <label htmlFor="password" className="block text-gray-700 font-semibold mb-2">
               Password
             </label>
             <input
+              id="password"
               type="password"
               name="password"
               className="w-full p-2 border rounded focus:outline-blue-400"
