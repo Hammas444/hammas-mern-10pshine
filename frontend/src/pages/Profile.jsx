@@ -216,6 +216,7 @@
 // export default Profile;
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 
 const Profile = () => {
   const navigate = useNavigate();
@@ -280,7 +281,7 @@ const Profile = () => {
         })
       );
 
-      alert("Profile updated successfully!");
+      toast("Profile updated successfully!",{style:{background:"#22c55e",color:"#fff"}});
       setEditing(false);
       navigate("/dashboard");
     } catch (error) {

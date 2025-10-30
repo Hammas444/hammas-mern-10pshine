@@ -65,12 +65,37 @@ import {Routes,Route,BrowserRouter,Navigate,} from "react-router-dom";
 import Profile from "./pages/Profile";
 import UserDashboard from "./pages/UserDashboard";
 import EditNote from "./pages/EditNote";
+import { Toaster } from "react-hot-toast";
 
 function App() {
   const user = JSON.parse(localStorage.getItem("user"));
   console.log("User:", user);
 
   return (
+
+
+<>
+    <h1 className="fixed top-4 left-6 z-50 text-3xl font-bold text-black tracking-wide select-none" 
+        style={{ fontFamily: "Poppins, sans-serif" }}
+    >
+        Paperless
+      </h1>
+        
+        
+        <Toaster
+        position="bottom-center"
+        reverseOrder={false}
+        toastOptions={{
+          success: {
+            style: { background: "#4ade80", color: "white" }, // green
+          },
+          error: {
+            style: { background: "#ef4444", color: "white" }, // red
+          },
+        }}
+      />
+
+      
     <BrowserRouter>
       {user && <Navbar />}
 
@@ -96,6 +121,7 @@ function App() {
         )}
       </Routes>
     </BrowserRouter>
+</>
   );
 }
 

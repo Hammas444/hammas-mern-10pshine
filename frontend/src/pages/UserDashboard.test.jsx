@@ -37,7 +37,7 @@ describe("🧪 Notes_Dashboard Integration (Frontend Only, Real Token)", () => {
     const openBtn = await screen.findByTestId("open-add-modal");
     fireEvent.click(openBtn);
 
-    const modalTitle = await screen.findByText(/Add Note/i);
+    const modalTitle = await screen.findByText(/Create Note/i);
     expect(modalTitle).toBeInTheDocument();
 
     const closeBtn = screen.getByRole("button", { name: /Add Note/i });
@@ -65,7 +65,7 @@ describe("🧪 Notes_Dashboard Integration (Frontend Only, Real Token)", () => {
     fireEvent.click(submitBtn);
 
     await waitFor(() => {
-      expect(screen.queryByText(/add a new note/i)).not.toBeInTheDocument();
+      expect(screen.queryByText(/Add Note/i)).not.toBeInTheDocument();
     });
   });
 
