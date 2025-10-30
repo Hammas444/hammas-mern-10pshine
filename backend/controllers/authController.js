@@ -1,7 +1,9 @@
-const bcrypt = require("bcryptjs");
-const jwt = require("jsonwebtoken");
-const User = require("../models/User");
-const logger = require("pino")({
+
+import bcrypt from "bcryptjs";
+import jwt from "jsonwebtoken";
+import User from "../models/User.js";
+import pino from "pino";
+const logger = pino({
   transport: {
     target: "pino-pretty",
     options: {
@@ -107,7 +109,7 @@ async function updateUser(req, res) {
 
 try {
 
-  const  userId  = req.user.id;
+  const  userId  = req.params.id;
   const { username, email, password } = req.body;
   const user = await User.findByPk(userId);
   if (!user) {
@@ -133,4 +135,5 @@ res.status(500).json({ error: "Failed to update user", details: error.message })
 }
 
 
-module.exports = { register, login, getUsers, updateUser };
+
+export  { register, login, getUsers, updateUser };

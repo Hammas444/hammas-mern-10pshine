@@ -15,7 +15,7 @@ const user = JSON.parse(localStorage.getItem('user'));
 
   return (
 
-    (user? 
+   
     <nav className="fixed top-4 left-1/2 -translate-x-1/2 z-50 
                     flex items-center justify-center gap-6 
                     px-6 py-3 rounded-2xl 
@@ -39,7 +39,7 @@ const user = JSON.parse(localStorage.getItem('user'));
         
       </button>
     </nav>
-    :"" )
+  
    
   
 
