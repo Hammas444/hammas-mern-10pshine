@@ -144,20 +144,30 @@ const EditNote = () => {
         <h2 className="text-3xl font-semibold text-gray-800 text-center mb-6">
           Edit Note
         </h2>
-
+         <br />
         <form onSubmit={handleSave} className="space-y-6">
           {/* Title Field */}
           <div>
             <label className="block text-gray-700 font-semibold mb-2">
               Title:
             </label>
-            <ReactQuill
+
+              <input type="text" 
+              value={editedNote.title}
+              onChange={(value) => setEditedNote({ ...editedNote, title: value.target.value })}
+              className="w-full p-2 border border-gray-300  mb-2"
+              placeholder="Title"
+              />
+
+
+
+            {/* <ReactQuill
              aria-label="Title Editor"
               theme="snow"
               value={editedNote.title}
               onChange={(value) => setEditedNote({ ...editedNote, title: value })}
               className="bg-white rounded-lg border border-gray-300 shadow-sm"
-            />
+            /> */}
           </div>
 
           {/* Content Field */}

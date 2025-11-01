@@ -566,11 +566,6 @@
 
 import React, { useEffect, useState } from "react";
 import {
-  FaEdit,
-  FaTrash,
-  FaSave,
-  FaTimes,
-  FaPlus,
   FaSearch,
 } from "react-icons/fa";
 import "../index.css";
@@ -730,13 +725,22 @@ const UserDashboard = () => {
               Add a New Note
             </h2>
 
-            <ReactQuill
+
+              <input type="text" 
+              value={newNote.title} 
+              onChange={(e) => setNewNote({ ...newNote, title: e.target.value})}
+              placeholder="Add Note Title..."
+              className="w-full p-2 border border-gray-300  mb-2"
+              />
+
+
+            {/* <ReactQuill
               theme="snow"
               value={newNote.title}
               onChange={(e) => setNewNote({ ...newNote, title: e })}
               className="bg-white mb-6"
               placeholder="Add Note Title..."
-            />
+            /> */}
 
             <ReactQuill
               theme="snow"
