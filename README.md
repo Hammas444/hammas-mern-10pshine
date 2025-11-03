@@ -1,6 +1,6 @@
 # 📝 MERN Notes App
 
-A full-stack **Notes Management Application** built with the **MERN stack (MongoDB, Express, React, Node.js)**.
+A full-stack **Notes Management Application** built with the **MERN stack (PostgreSQL, Express, React, Node.js)**.
 Users can **create, edit, delete, and search notes** with a clean, responsive interface — and all data is securely stored in MongoDB.
 
 ---
