@@ -62,7 +62,7 @@ mern-notes-app/
 
 ```bash
 git clone https://github.com/Hammas444/hammas-mern-10pshine.git
-cd mern-notes-app
+cd hammas-mern-10pshine
 ```
 
 ### 2️⃣ Setup the backend
