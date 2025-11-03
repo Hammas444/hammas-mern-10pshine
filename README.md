@@ -31,7 +31,7 @@ Users can **create, edit, delete, and search notes** with a clean, responsive in
 ## 🏗️ Folder Structure
 
 ```
-mern-notes-app/
+hammas-mern-10pshine/
 │
 ├── backend/
 │   ├── index.js
