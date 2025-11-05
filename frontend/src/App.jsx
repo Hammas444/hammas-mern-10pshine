@@ -75,11 +75,13 @@ function App() {
 
 
 <>
-    <h1 className="fixed top-4 left-6 z-50 text-3xl font-bold text-black tracking-wide select-none" 
-        style={{ fontFamily: "Poppins, sans-serif" }}
-    >
+    
+    {user && <h1 className="fixed top-4 left-6 z-50 text-3xl font-bold text-black tracking-wide select-none" 
+        style={{ fontFamily: "Poppins, sans-serif" }}>
         Paperless
       </h1>
+    }
+    
         
         
         <Toaster
