@@ -98,6 +98,27 @@ Backend API: **[http://localhost:5000](http://localhost:5000)**
 
 ---
 
+
+Screenshots
+🧩 Frontend UI
+
+
+	
+	
+<img width="1024" height="768" alt="Screenshot (173)" src="https://github.com/user-attachments/assets/1e1fdc2b-6054-4e05-a39d-3cfbb608a175" />
+
+
+📂 Save your screenshots inside:
+frontend/public/screenshots/ or a root-level screenshots/ folder.
+
+📊 SonarQube Dashboard
+Project Overview	Code Smells	Coverage
+
+	
+
+
+
+
 ## 🧪 Running with SonarQube
 
 ### Step 1: Start SonarQube
