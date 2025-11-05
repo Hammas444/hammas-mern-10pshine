@@ -99,23 +99,27 @@ Backend API: **[http://localhost:5000](http://localhost:5000)**
 ---
 
 
-Screenshots
+## 🖼️ Screenshots
 🧩 Frontend UI
 
+## Login Page
+ 
+<img width="1024" height="768" alt="Screenshot (172)" src="https://github.com/user-attachments/assets/efb9bf80-e396-4132-a0b9-df2ea4d1b935" />
 
-	
+## User Dashboard Page
 	
 <img width="1024" height="768" alt="Screenshot (173)" src="https://github.com/user-attachments/assets/1e1fdc2b-6054-4e05-a39d-3cfbb608a175" />
 
+## User Profile Page
 
-📂 Save your screenshots inside:
-frontend/public/screenshots/ or a root-level screenshots/ folder.
+<img width="1024" height="768" alt="Screenshot (174)" src="https://github.com/user-attachments/assets/cb1ace11-b732-43d6-b4cd-28f923622076" />
 
-📊 SonarQube Dashboard
-Project Overview	Code Smells	Coverage
 
-	
 
+## 📊 SonarQube Dashboard
+
+
+<img width="1024" height="768" alt="Screenshot (171)" src="https://github.com/user-attachments/assets/d7f0b2e6-6121-4786-8a73-d5c87d36bdff" />
 
 
 
