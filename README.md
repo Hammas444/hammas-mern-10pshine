@@ -183,4 +183,3 @@ sonar \
 
 ---
 
-**✨ Happy Coding & Keep Notes Organized!**
