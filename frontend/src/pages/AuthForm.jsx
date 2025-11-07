@@ -85,7 +85,7 @@ export default function AuthForm() {
   // Otherwise show auth form
   return (
     <div className="flex items-center justify-center min-h-screen">
-      <div className="bg-black text-white shadow-xl rounded-2xl p-8 w-full max-w-md">
+      <div className="bg-blue-500 text-white shadow-xl rounded-2xl p-8 w-full max-w-md">
         <h2 className="text-2xl font-bold text-center text-gray-700 mb-6">
           {isLogin ? "Login" : "Sign Up"}
         </h2>
@@ -151,7 +151,7 @@ export default function AuthForm() {
               Don’t have an account?{" "}
               <button
                 onClick={() => setIsLogin(false)}
-                className="text-blue-400 hover:underline rounded-2"
+                className="text-amber-300 hover:underline rounded-2"
               >
                 Sign Up
               </button>
@@ -161,7 +161,7 @@ export default function AuthForm() {
               Already a member?{" "}
               <button
                 onClick={() => setIsLogin(true)}
-                className="text-blue-400 hover:underline rounded-1"
+                className="text-amber-300 hover:underline rounded-1"
               >
                 Login
               </button>
